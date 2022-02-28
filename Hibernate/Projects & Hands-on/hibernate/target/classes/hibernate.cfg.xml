@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/springjdbc</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">root</property>
+		<property name="dialect">org.hibernate.dialect.MySQL8Dialect</property> <!-- dialect is equivalent to syntax of used DB -->
+		<property name="hbm2ddl.auto">update</property> <!-- this ensures DB table is only created when it doesn't exist, use value create for overwriting, UPDATE for not overwriting-->
+		<property name="show_sql">true</property> <!-- shows the queries created by hibernate -->
+		<property name="format_sql">true</property> <!-- shows sql statements in formatted way -->
+		<property name="cache.use_second_level_cache">true</property> <!-- enable second level cache -->
+		<property name="cache.region.factory_class">org.hibernate.cache.ehcache.internal.EhcacheRegionFactory</property> <!-- configuring second level cache -->
+		<mapping class="com.hibernate.Student"/> <!-- this enables mapping of student class to DB, this tag is applicable only when annotations are used in entity class, for multiple entity class use multiple mapping tag -->
+		<mapping class="com.hibernate.Address"/>
+		<mapping class="com.hibernate.QuestionOneToOneMapping"/>
+		<mapping class="com.hibernate.AnswerOneToOneMapping"/>
+		<mapping class="com.hibernate.QuestionOneToManyMapping"/>
+		<mapping class="com.hibernate.AnswerOneToManyMapping"/>
+		<mapping class="com.hibernate.EmpManyToMany"/>
+		<mapping class="com.hibernate.ProjManyToMany"/>
+		<mapping class="com.hibernate2.Student1"/>
+		<mapping resource="Person.hbm.xml"/> <!-- giving location of xml mapping file in hibernate config file -->
+			</session-factory>
+	
+</hibernate-configuration>

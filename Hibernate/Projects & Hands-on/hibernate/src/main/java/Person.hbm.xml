@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="MappingByXML.Person" table="person">
+		<id name="id" column="id"> <!-- id tag is for defining primary key -->
+			<generator class="native"></generator> <!-- generator tag is for defining type of generation for id field, native means user provided id -->
+		</id>
+		<property name="name"></property> <!-- if we don't define column attribute then var name is taken as db field name -->
+		<property name="address" type="string"></property>
+		<property name="phone"></property>
+	</class>
+</hibernate-mapping>

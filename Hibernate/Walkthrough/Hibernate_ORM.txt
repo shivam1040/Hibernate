@@ -1,0 +1,53 @@
+Hibernate makes it easy for databse object mapping, which data of obj should go to which var
+
+Hibernate is pojos, non-invasive(doesn't force to extend or impleent) and is loosely coupled
+
+Hibernate can be used to build mutliple applications
+
+DAO=data access object
+
+Hibernate makes persistent logic that is to do crud or other operations
+
+hibernate provides abstraction sits on top of database and jdbc
+
+Initially mapping is don between bean and database for hibernaten  to work
+
+in jdbc we had to manually write dao classes for crud
+
+@GenerateValue annotations is used below id annotation which increments the primary key on basis of strategy
+
+@Column is used to change name, give attributes(NOT NULL varchar etc.) etc. to fields in db, can be used for column mapping too
+
+@Transient is used to tell hibernate to not create the field in table for var which is below this annotayion
+
+@Temporal is used format the way date is saved in db, used above date var
+
+@Lob is used to specify if a var is blob/clob
+
+Session class has two methods get and load for featching data
+
+get method returns null if data is not found in cache or db while load method throws objectnotfoundexception
+in get method first it  is checked if data is present in session buffer/cache(if found return the previous obj which was created for this query) if not then only DB is hit while in load method it just returns a proxy object and when the object's inside features/methods are used then only the proxy obj is converted to real data obj which increases performance(returns no true obj when getid method is called)
+
+mapping of two types, bidirectional or unidirectional
+one question one answer, one studen one laptop, one person one soul- all these are one to one mapping
+
+ManytoMany mapping is many entity to many entity, for instance- one person to many projects, many projects one person
+ 
+in Lazyloading data is loaded when object's method is explicitly called while in Eager loading the data is loaded as soon as it is fetched
+
+Hibernate has four states; transient state, persistent state, detached state and removed state
+when properties/attributes are set to object then it goes to transient state, in this state obj is not in Db or hibernate session
+when session save on an obj is called, obj goes to db and associates with session obj, i.e goes to persistent state(data is both in db and session)
+when session is closed, data obj gets disociated with session obj and goes to detached state(data is only in db not session)
+when session delete method is called on data obj, data gets deleted in db and remains assocaited with session obj, this is removed state
+
+Hibernate query language(HQL) is independent of DB, this is used for custom query
+
+Select * from Student(SQL)= from Student(HQL),  in sql Student is table while in HQL Student is entity
+
+Caching is mechanism toenhance performance of application, it is used to reduce number of db queries
+cache memory sits b/w ram and cpu generally in terms of os
+hibernate uses first level caching, second level caching, query level caching
+First level caching is assocaited is associated with session obj, that means where session obj can be uses, first level caching canbe used, this cache provided by default
+Second level caching is assocaiated with sessionfactory obj(application level obj) so this cache can be used application wide, this cache needs to be enabled manually
